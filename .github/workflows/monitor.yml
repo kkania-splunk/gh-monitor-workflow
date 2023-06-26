@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: monitor issues
+        permissions:
+          issues: write
         run: |
           gh issue create --title "welcome" --body "very first issue" --repo $GITHUB_REPOSITORY
           gh search issues --repo $GITHUB_REPOSITORY --state open
