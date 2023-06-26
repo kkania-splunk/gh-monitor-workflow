@@ -11,10 +11,6 @@ permissions:
   actions: read
   checks: read
   contents: read
-  deployments: read
-  packages: read
-  pull-requests: read
-  statuses: read
   issues: write
 
 jobs:
@@ -23,7 +19,10 @@ jobs:
     steps:
       - name: monitor issues
         run: |
-          gh issue create --title "welcome" --body "very first issue" --repo $GITHUB_REPOSITORY
+          gh issue create --title "test" --body "very first issue" --repo $GITHUB_REPOSITORY
+          if [ -z "$(gh search issues --repo $GITHUB_REPOSITORY) ]; then
+            gh issue create --title "welcome" --body "very first issue" --repo $GITHUB_REPOSITORY
+          fi
           gh search issues --repo $GITHUB_REPOSITORY --state open
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
