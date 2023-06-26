@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: monitor issues
         run: |
-          env
+          gh search issues --repo $GITHUB_REPOSITORY --state open
