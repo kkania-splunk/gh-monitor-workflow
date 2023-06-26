@@ -8,8 +8,6 @@ on:
         required: true
 
 permissions:
-  actions: read
-  checks: read
   contents: read
   issues: write
 
