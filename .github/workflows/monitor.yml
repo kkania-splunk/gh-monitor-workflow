@@ -1,5 +1,8 @@
 name: issue-monitor
 
+on:
+  workflow_call
+
 permissions:
   contents: read
   packages: read
