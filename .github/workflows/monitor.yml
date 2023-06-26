@@ -1,7 +1,11 @@
 name: issue-monitor
 
 on:
-  workflow_call
+  workflow_call:
+    secrets:
+      GH_TOKEN:
+        description: Github token
+        required: true
 
 permissions:
   contents: read
@@ -15,4 +19,4 @@ jobs:
         run: |
           gh search issues --repo $GITHUB_REPOSITORY --state open
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
