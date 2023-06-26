@@ -8,9 +8,7 @@ on:
         required: true
 
 permissions:
-  contents: read
-  packages: read
-  issues: read
+  issues: write
 
 jobs:
   monitor:
