@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: monitor issues
-        run:
-          - env
+        run: |
+          env
