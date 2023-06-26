@@ -14,3 +14,5 @@ jobs:
       - name: monitor issues
         run: |
           gh search issues --repo $GITHUB_REPOSITORY --state open
+      env:
+        GH_TOKEN: ${{ github.token }}
