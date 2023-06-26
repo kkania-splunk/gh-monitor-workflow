@@ -17,6 +17,7 @@ jobs:
     steps:
       - name: monitor issues
         run: |
+          echo $$GITHUB_REPOSITORY
           gh search issues --repo $GITHUB_REPOSITORY --state open
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
