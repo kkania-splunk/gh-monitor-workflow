@@ -29,7 +29,7 @@ jobs:
   prs-monitor:
     runs-on: ubuntu-latest
     steps:
-      - name: monitor issues
+      - name: monitor prs
         run: |
           echo "opened prs in $GITHUB_REPOSITORY"
           gh search prs --repo $GITHUB_REPOSITORY --state open
