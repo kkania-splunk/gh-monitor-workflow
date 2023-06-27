@@ -1,4 +1,4 @@
-name: issue-monitor
+name: gh-monitor
 
 on:
   workflow_call:
@@ -9,10 +9,11 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
   issues: write
 
 jobs:
-  monitor:
+  issue-monitor:
     runs-on: ubuntu-latest
     steps:
       - name: monitor issues
@@ -21,5 +22,15 @@ jobs:
             gh issue create --title "welcome" --body "very first issue" --repo $GITHUB_REPOSITORY
           fi
           gh search issues --repo $GITHUB_REPOSITORY --state open
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  prs-monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: monitor issues
+        run: |
+          echo "list opened prs"
+          gh search prs --repo $GITHUB_REPOSITORY --state open
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
