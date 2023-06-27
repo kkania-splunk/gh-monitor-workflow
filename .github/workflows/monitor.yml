@@ -30,7 +30,7 @@ jobs:
     steps:
       - name: monitor issues
         run: |
-          echo "list opened prs"
+          echo "opened prs in $GITHUB_REPOSITORY"
           gh search prs --repo $GITHUB_REPOSITORY --state open
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
