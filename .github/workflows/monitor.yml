@@ -1,0 +1,37 @@
+name: gh-monitor
+
+on:
+  workflow_call:
+    secrets:
+      GH_TOKEN:
+        description: Github token
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+jobs:
+  issue-monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: monitor issues
+        run: |
+          if [ -z "$(gh search issues --repo $GITHUB_REPOSITORY)" ]; then
+            gh issue create --title "welcome" --body "very first issue" --repo $GITHUB_REPOSITORY
+          fi
+          echo "opened issues in $GITHUB_REPOSITORY"
+          gh search issues --repo $GITHUB_REPOSITORY --state open
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  prs-monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: monitor prs
+        run: |
+          echo "opened prs in $GITHUB_REPOSITORY"
+          gh search prs --repo $GITHUB_REPOSITORY --state open
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
